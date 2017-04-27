@@ -12,7 +12,7 @@ import os
 import sys
 
 def render_with_categories(template, **kwargs):
-    return render_template(template, categories=Category.query.all(), current_url=request.path, **kwargs)
+    return render_template(template, categories=Category.query.all(), current_url=request.script_root+request.path, **kwargs)
 
 @app.route('/')
 def index():
