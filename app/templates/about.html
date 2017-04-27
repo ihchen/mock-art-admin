@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %} | About{% endblock %}
+
+{% block description %}
+Learn more about Carly A. Brock and how to purchase one of her paintings.
+{% endblock %}
+
+{% block keywords %}Carly Brock about, purchase painting{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/about.css') }}" />
+{% endblock %}
+
+{% block body %}
+<div class="page-header">
+    <h2 class="text-center">About</h2>
+</div>
+<div class="row image-container">
+    <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
+        <img class="side-image" src="{{ url_for('static', filename='images/about1.jpg') }}" />
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-5 col-xs-12">
+        <img class="main-image" src="{{ url_for('static', filename='images/about2.jpg') }}" />
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
+        <img class="side-image" src="{{ url_for('static', filename='images/about3.jpg') }}" />
+    </div>
+</div>
+<div class="page-header"></div> <!-- For the dotted border -->
+<div class="row text-container">
+    <div class="col-lg-5 col-md-5 col-sm-5">
+        <blockquote class="admin">
+            <div id="quote">{{ about_model.quote }}</div>
+            <span class="glyphicon glyphicon-pencil admin-hover" title="Edit Quote"></span><span class="glyphicon glyphicon-floppy-disk hidden" title="Save Quote"></span>
+            <footer class="admin">
+                <span id="quotee">{{ about_model.quotee }}</span>
+                <span class="glyphicon glyphicon-pencil admin-hover" title="Edit Quotee"></span><span class="glyphicon glyphicon-floppy-disk hidden" title="Save Quotee"></span>
+            </footer>
+        </blockquote>
+    </div>
+    <div class="col-lg-7 col-md-7 col-sm-7 admin description">
+        <div id="description">{{ about_model.description|safe }}</div>
+        <div class="glyphicon glyphicon-pencil admin-hover" title="Edit Description"></div><div class="glyphicon glyphicon-floppy-disk hidden" title="Save Description"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+var updateAboutURL = "{{ url_for('edit_about') }}";
+</script>
+<script src="{{ url_for('static', filename='js/autosize.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/admin/about.js') }}"></script>
+{% endblock %}

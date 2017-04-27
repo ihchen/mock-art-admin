@@ -1,0 +1,52 @@
+.image-container{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: inherit;
+}
+img {
+    max-width: 100%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.main-image {
+    max-height: 345px;
+}
+.side-image {
+    max-height: 320px;
+}
+
+/* Extra styling for xs */
+@media (max-width: 767px) {
+    .container {    /* In xs, .row isn't centered, so center it */
+        text-align: center;
+    }               /* In xs, .row does not take up entirety of container, so set it */
+    .image-container {
+        width: 100%;
+    }               /* Centers the image */
+    img {
+        left: 0;
+        transform: translateX(0);
+    }
+}
+
+blockquote {
+    border-left: 0;
+    font-size: 2em;
+    font-family: Calibri;
+}
+blockquote footer {
+    padding-top: 1.5em;
+    padding-bottom: 0;
+}
+pre {
+	font-family: Calibri;
+	white-space: pre-wrap;
+	word-break: normal;
+	word-wrap: normal;
+
+	border-radius: 0;
+	border: 0;
+    background-color: transparent;
+}
