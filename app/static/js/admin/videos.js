@@ -21,16 +21,18 @@ function checkYoutubeEmbed(src) {
 
 $(document).ready(function() {
     $('.temp-iframe').each(function() {
-        var src = $(this).data('src');
+        var src = $(this).attr('src');
         if(checkYoutubeEmbed(src))
             $(this).replaceWith(`<iframe class="embed-responsive-item" src="`+src+`" allowfullscreen></iframe>`);
+        else
+            $(this).html('Please use a Youtube embed URL');
     });
 
     // Prep popovers
     $('[data-toggle="popover"]').popover();
     $('.video-admin .glyphicon-pencil').each(function() {
         var iframeContainer = $(this).parent('.video-admin').prev();
-        var oldurl = iframeContainer.children('.temp-iframe').data('src')
+        var oldurl = iframeContainer.children('.temp-iframe').attr('src')
                     || iframeContainer.children('iframe').attr('src');
         var form = `<form method="POST" action="`+editVideoURL+`">`+createVideoFormContent(
                         name=$(this).attr('data-title'),
@@ -76,7 +78,7 @@ $(document).ready(function() {
         if(confirm('Are you sure you want to delete this video?')) {
             $.post({
                 url: deleteVideoURL,
-                data: {url: $(this).parent('.video-admin').prev().children('iframe').attr('src')},
+                data: {url: $(this).parent('.video-admin').prev().children().attr('src')},
                 success: function(return_data) {
                     ajaxSuccessAlert(return_data);
                 }
